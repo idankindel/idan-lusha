@@ -1,0 +1,21 @@
+FROM node:18-alpine
+
+WORKDIR /usr/src/app
+
+## Add the wait script to the builder image
+ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.5.0/wait /wait
+RUN chmod +x /wait
+
+COPY . .
+
+RUN npm install
+
+
+# Conditionally run the build process only in production mode
+ARG NODE_ENV
+RUN if [ "$NODE_ENV" = "production" ]; then \
+    npm run build; \
+    fi
+
+# Conditionally run the CMD based on NODE_ENV
+CMD ["sh", "-c", "if [ \"$NODE_ENV\" = \"development\" ]; then /wait && node dist/main.js; else node dist/server.js; fi"]

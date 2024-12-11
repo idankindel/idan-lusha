@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  parser_service:
+    build:
+      context: ./server
+    container_name: parser_service
+    ports:
+      - "8906:8906"
+    volumes:
+      - ./server:/usr/src/app
+    environment:
+      - MONGO_URI=mongodb://mongo:27017
+      - REDIS_URL=redis://redis:6379
+      - NODE_ENV=development
+    depends_on:
+      - mongo
+      - redis
+    command: sleep infinity
+    networks:
+      - app_network
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - "27020:27017"
+    volumes:
+      - mongo_data:/data/db
+      - ./scripts/mongo/:/docker-entrypoint-initdb.d
+    networks:
+      - app_network
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6383:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - app_network
+
+volumes:
+  mongo_data:
+  redis_data:
+
+
+networks:
+  app_network:
+    driver: bridge

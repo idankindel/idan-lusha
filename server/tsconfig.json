@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "allowJs": false,
+    "esModuleInterop": true,
+    "inlineSources": true,
+    "lib": [
+      "es2021"
+    ],
+    "module": "commonjs",
+    "outDir": "dist",
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "target": "es2021"
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
