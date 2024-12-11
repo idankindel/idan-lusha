@@ -1,4 +1,4 @@
-# Project Name
+# Idan Home assigment
 
 A brief description of your project.
 
@@ -12,6 +12,26 @@ Before running the project, make sure you have the following installed on your m
 - **Node.js** installed
 
 ## Setup Instructions
+
+### Production Mode
+
+To run the project in **production mode**, follow these steps:
+
+1. **Clone the repository** (if not done already):
+
+    ```bash
+    git clone <repository-url>
+    cd <repo-directory>
+    ```
+
+2. **Build and start the Docker containers** for production:
+
+    ```bash
+    docker compose -f docker-compose.prod.yml up --build -d
+    ```
+
+3. Ensure that the **ports** in the Docker Compose file are not already in use on your machine.
+
 
 ### Development Mode
 
@@ -44,25 +64,6 @@ To run the project in **development mode**, follow these steps:
 
     - Press **F5** in VSCode to start debugging.
 
-### Production Mode
-
-To run the project in **production mode**, follow these steps:
-
-1. **Clone the repository** (if not done already):
-
-    ```bash
-    git clone <repository-url>
-    cd <repo-directory>
-    ```
-
-2. **Build and start the Docker containers** for production:
-
-    ```bash
-    docker compose -f docker-compose.prod.yml up --build -d
-    ```
-
-3. Ensure that the **ports** in the Docker Compose file are not already in use on your machine.
-
 ## Assumptions & Logic
 
 1. **Link Filter Logic**: The project assumes that the relevant links are found within the `<head>` tag of the HTML. Although the link filtering logic could be improved, this assumption is made for simplicity.
@@ -88,7 +89,3 @@ To run the project in **production mode**, follow these steps:
 Thank you for the opportunity to work on this assignment. During the project, I deepened my knowledge of Docker and Redis, which I wasn't fully familiar with before. I also learned how to organize the project in Docker containers for better scalability and deployment.
 
 Although I don’t have much experience writing tests, I’m eager to expand my skills in this area in the future.
-
-## License
-
-[Include your project’s license here, if applicable]
